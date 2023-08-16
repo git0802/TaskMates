@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Tasks.css"
-import { Routes, Route, Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 function Tasks({selectedUserId, handleUserSelect, users}) {
@@ -66,7 +66,6 @@ function Tasks({selectedUserId, handleUserSelect, users}) {
         });
         const data = await results.json();
         getTasks();
-        // setTasks([...tasks, data]);
         setInput("") //clear the input field
       } catch (error) {
         console.log(error)
@@ -76,13 +75,20 @@ function Tasks({selectedUserId, handleUserSelect, users}) {
 
   return (
   <>
-  <div className="mb-3">
+  <div className="mb-3 text-center">
+    <div className="grid">
+      <div className="row">
+      <div className="col">
+
+</div>
+      <div className="col">
     <form onSubmit={handleSubmit}>
       <h2>All tasks</h2>
+      
       <div className="dropdown">
         <button
           onClick={handleOpen}
-          className="btn btn-secondary dropdown-toggle"
+          className="btn btn-light dropdown-toggle"
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
@@ -93,7 +99,9 @@ function Tasks({selectedUserId, handleUserSelect, users}) {
           <div>
             {users.map((user) => (
               <div key={user.id} onClick={() => handleUserSelect(user.id)}>
-                <button type="button">{user.name}</button>
+                <button type="button" 
+                className="btn active" data-bs-toggle="button" aria-pressed="true" >
+                {user.name}</button>
               </div>
             ))}
           </div>
@@ -108,38 +116,50 @@ function Tasks({selectedUserId, handleUserSelect, users}) {
         onChange={(event) => {
           setCategory(event.target.value);
         }}
-        className="form-select"
+        className="form-select btn-lg"
         aria-label="Default select example"
       >
-        <option selected>Category</option>
+        <option value="category">Category</option>
         <option value="Cleaning">Cleaning</option>
         <option value="Buying">Buying</option>
-        <option value="URGENT">URGENT</option>
+        <option value="URGENT">Urgent</option>
       </select>
-      <button className="btn btn-primary" type="submit">
+      <button className="btn btn-outline-dark" type="submit">
         Add task
       </button>
     </form>
-    <div>
-      {tasks.map((task) => (
+    
+    {tasks
+    .map((task) => {
+       const userAssociatedWithTask = users.find((user) => user.id === task.id_user);
+       return (
         <div key={task.id}>
+          <Link to={`/users/${task.id_user}`}>
+            {userAssociatedWithTask ? userAssociatedWithTask.name : "User Not Found"}
+          </Link>
           <ul>{task.description}</ul>
-          <p>Category: {task.category}</p>
-          <Link to={`/users/${task.id_user}`}>{task.id_user}</Link>
+          <p className="category">Category: {task.category}</p>
           <button
-            className="btn btn-secondary"
+            className="delete-btn btn-outline-dark"
             onClick={() => handleDelete(task.id)}
           >
             Delete task
           </button>
         </div>
-      ))}
+        
+      );
+    })}
     </div>
+        <div className="col">
+
+    </div>
+  
+  </div>
+  </div>
   </div>
 </>
-    )   
- }
-
+);
+};
 
 export default Tasks;
 

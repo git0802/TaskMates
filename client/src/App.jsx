@@ -3,12 +3,14 @@ import './App.css';
 import Tasks from './components/Tasks';
 import UserProfile from './components/UserProfile';
 import Home from './components/Home';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, Outlet } from 'react-router-dom';
+
 
 function App() {
   const [users, setUsers] = useState([]); 
   const [selectedUser, setSelectedUser] = useState(null);
   const [selectedUserId, setSelectedUserId] = useState(null);
+  const [user, setUser] = useState({id:"", name:"", lastname:"", description:""});
 
   const getUsers = () => {
     fetch('/api/users')
@@ -41,20 +43,29 @@ function App() {
 
   return (
     <>
-      <div className="App">
-      <div>
-          <Link to="/">Home</Link>
-        </div>   
-        <div>
-          <Link to="/tasks">Tasks</Link>
-        </div>  
+      <div className="App">  
+      <nav className="navbar navbar-light bg-light">
+                <div className="container-fluid">
+                        <div>
+                        <i className="glyphicon glyphicon-home"></i>
+                            <Link to="/" className="link-dark">Home</Link>
+                        </div>   
+                        <div>
+                        <i className="glyphicon glyphicon-tasks"></i>
+                            <Link to="/tasks" className="link-dark">Tasks</Link>
+                        </div> 
+                </div>
+            </nav>       
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/tasks" element={<Tasks selectedUserId={selectedUserId} handleUserSelect={handleUserSelect} users={users}/>} />
-          <Route path="/users/:id" element={<UserProfile />} />
+          <Route path="/users/:id" element={<UserProfile selectedUserId={selectedUserId}/>} >
+            <Route path="/users/:id/tasks" element={<Tasks selectedUserId={selectedUserId} handleUserSelect={handleUserSelect} users={users} />} />
+          </Route>
           {/* <Route path="*" element={<404 />} />*/}
         </Routes>
       </div>
+      <Outlet />
     </>
   );
 }
@@ -63,8 +74,6 @@ export default App;
 
 
 
-// How to make that every user can put their ounw description and image?
-// How to implement BrowserRouter when users clicked?
 
 
     

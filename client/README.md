@@ -1,8 +1,35 @@
-# React + Vite
+## Intro to project
+Tasks sharing App. The goal of the app is to make things easier for people who
+share appartment when sharing tasks, expenses, etc. In the app there is a tasks list that is binded to each user. 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Structure of the tables of the DB:
+There are two tables in my DB. 
+1. Users table:
+    - id
+    - Name
+    - Lastname
+    - Description
+2. Tasks table:
+    - id
+    - Description
+    - isDone
+    - Category
+    - id_user
 
-Currently, two official plugins are available:
+The two tables are joint by the users ID. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Setup
+
+### Dependencies
+
+- Run `npm install` in project directory. This will install server-related dependencies such as `express`.
+- `cd client` and run `npm install`. This will install client dependencies (React).
+
+### Database Prep
+
+- Run `npm run migrate` in the project folder of this repository, in a new terminal window. This will create a table called 'students' in your database.
+
+### Development
+
+- Run `npm start` in project directory to start the Express server.
+- In another terminal, do `cd client` and run `npm run dev` to start the client in development mode with hot reloading.
