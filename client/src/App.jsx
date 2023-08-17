@@ -3,6 +3,7 @@ import './App.css';
 import Tasks from './components/Tasks';
 import UserProfile from './components/UserProfile';
 import Home from './components/Home';
+import Bills from './components/Bills';
 import { Routes, Route, Link, Outlet } from 'react-router-dom';
 
 
@@ -44,24 +45,29 @@ function App() {
   return (
     <>
       <div className="App">  
-      <nav className="navbar navbar-light bg-light">
-                <div className="container-fluid">
-                        <div>
-                        <i className="glyphicon glyphicon-home"></i>
-                            <Link to="/" className="link-dark">Home</Link>
-                        </div>   
-                        <div>
-                        <i className="glyphicon glyphicon-tasks"></i>
-                            <Link to="/tasks" className="link-dark">Tasks</Link>
-                        </div> 
-                </div>
-            </nav>       
+        <nav className="navbar navbar-light">
+                  <div className="container-fluid">
+                          <div>
+                          <i className="glyphicon glyphicon-home"></i>
+                              <Link to="/" className="link-dark">Home</Link>
+                          </div>
+                          <div>
+                          <i className="glyphicon glyphicon-tasks"></i>
+                              <Link to="/tasks" className="link-dark">Tasks</Link>
+                          </div>
+                          <div>
+                          <i className="glyphicon glyphicon-eur"></i>
+                              <Link to="/Bills" className="link-dark">Bills</Link>
+                          </div>
+                  </div>
+              </nav>       
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/tasks" element={<Tasks selectedUserId={selectedUserId} handleUserSelect={handleUserSelect} users={users}/>} />
           <Route path="/users/:id" element={<UserProfile selectedUserId={selectedUserId}/>} >
             <Route path="/users/:id/tasks" element={<Tasks selectedUserId={selectedUserId} handleUserSelect={handleUserSelect} users={users} />} />
           </Route>
+          <Route path="/bills" element={<Bills />} />
           {/* <Route path="*" element={<404 />} />*/}
         </Routes>
       </div>

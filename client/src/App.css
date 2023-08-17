@@ -1,15 +1,36 @@
 #root {
-  max-width: 1280px;
+  --button-active: #815B94;
+  --button-normal: #27013A;
+  --green: #789E65;
+  --white:#F6FAF1;
+  max-width: 100vw;
+  max-height: 100vh;
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   text-align: center;
 }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 
 body {
   background-image: url("https://static.vecteezy.com/system/resources/previews/016/413/096/non_2x/herbal-minimalist-and-modern-banner-with-free-space-for-text-hand-painted-plants-branches-leaves-on-a-white-background-greenery-wedding-simple-horizontal-template-free-vector.jpg");
   background-color: #cccccc;
  }
 
+nav {
+  background-color: var(--green);
+}
 
+nav i {
+  color: var(--white);
+  padding: 10px;
+}
 
-
+.container-fluid {
+  padding:0 220px;
+}

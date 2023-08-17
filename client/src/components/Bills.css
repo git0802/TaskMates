@@ -1,0 +1,16 @@
+#root {
+	--button-active: #815B94;
+	--button-normal: #27013A;
+	--green: #789E65;
+	--white:#F6FAF1;
+}
+
+.bills-main {
+	margin: 80px auto;
+	width: 1100px;
+	height: 800px;
+	max-width: 80%;
+	max-height: 80%;
+	background-color: var(--white);
+	border:thick double #27013A;
+}
