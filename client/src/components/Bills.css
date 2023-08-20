@@ -14,3 +14,22 @@
 	background-color: var(--white);
 	border:thick double #27013A;
 }
+
+.bills-header {
+	display: flex;
+	justify-content: space-around;
+	background-color: var(--button-normal);
+	color: var(--white);
+}
+
+.bills-content {
+	display: grid;
+	grid-template-columns: auto minmax(1, 16fr);
+	list-style: none;
+
+}
+
+.bills-content > li {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+}
