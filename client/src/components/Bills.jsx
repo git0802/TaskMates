@@ -5,10 +5,9 @@ import "./Bills.css";
 
 export default function Bills({users}) {
 	const [bills, setBills] = useState([]);
-	const [billsInfo, setBillsInfo] = useState([]);
-	const [name, setName] = useState([]);
-	
-	console.log(bills[0].id_user); 
+	// const [name , setName] = useState("");
+
+
 
 	useEffect(() => {
 		getBills()
@@ -25,18 +24,31 @@ export default function Bills({users}) {
 			});
 	};
 
-	useEffect(() => {
-		getBillsInfo()
-	}, []);
+	// console.log(bills);
+	// const fistbill = bills[0];
+	// console.log(fistbill);
 
+	// console.log(users.find(user => user.id === fistbill.id_user).name);
 
-	function getBillsInfo(bills){
-		console.log(bills.id_user);
-		const userFound = users.find(user =>user.id === id_user);
-		// console.log(userFound);
-		setBillsInfo(userFound);
-		setName(userFound => ({...userFound, name: userFound.name}))
-	}
+	// useEffect(() => {
+	// 	getNameInfo()
+	// }, []);
+
+	// const getNameInfo = (bills) => {
+	// 	const id_user = bills[0].id_user;
+	// 	setName(users.find(user => user.id === id_user).name);
+	// }
+
+	// useEffect(() => {
+	// 	getBillsInfo()
+	// }, []);
+
+	// function getBillsInfo(fistBill){
+	// 	const userFound = users.find(user =>user.id === fistBill.id_user);
+	// 	// console.log(userFound);
+	// 	setInfo(userFound);
+	// 	setName(userFound => ({...userFound, name: userFound.name}))
+	// }
 
 	return (
 		<div className="bills-main">
@@ -58,7 +70,11 @@ export default function Bills({users}) {
 						<div>{bill.provider} </div>
 						<div>{bill.amount} </div>
 						<div>{`${bill.status !== 0 ? "Paid" : "Unpaid"} `} </div>
-						<div>{bill.id_user} </div>
+						{/* <div>{users.length > 0 ? users.map(user => user.id === bill.id_user).name : ""} </div> */}
+						<div>
+							{users ? users.map(user => user.id === bill.id_user ? (<p key={user.id}>{user.name}</p>) : null) : ""}
+						</div>
+
 					</li>
 				))}
 			</ul>
