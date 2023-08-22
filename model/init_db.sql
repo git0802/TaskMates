@@ -29,7 +29,7 @@ CREATE TABLE bills(
     notes VARCHAR(255),
     amount INT not null,
     status TINYINT not null,
-    id_user INT UNSIGNED,
+    id_user INT UNSIGNED FOREIGN KEY REFERENCES users.id,
     id_task INT UNSIGNED
     );
 

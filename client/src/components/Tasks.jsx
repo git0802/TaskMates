@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./Tasks.css"
 import { Link } from 'react-router-dom';
 
@@ -51,7 +51,7 @@ function Tasks({selectedUserId, handleUserSelect, users}) {
         setTasks(data)
       } catch (error) {
         console.log(error)
-      };      
+      }
     };
 
     const addTask = async () => {
