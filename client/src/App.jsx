@@ -44,7 +44,7 @@ function App() {
 
   return (
     <>
-      <div className="App">  
+      <div className="App">
         <nav className="navbar navbar-light">
                   <div className="container-fluid">
                           <div>
@@ -60,14 +60,14 @@ function App() {
                               <Link to="/Bills" className="link-dark">Bills</Link>
                           </div>
                   </div>
-              </nav>       
+              </nav>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/tasks" element={<Tasks selectedUserId={selectedUserId} handleUserSelect={handleUserSelect} users={users}/>} />
           <Route path="/users/:id" element={<UserProfile selectedUserId={selectedUserId}/>} >
             <Route path="/users/:id/tasks" element={<Tasks selectedUserId={selectedUserId} handleUserSelect={handleUserSelect} users={users} />} />
           </Route>
-          <Route path="/bills" element={<Bills />} />
+          <Route path="/bills" element={<Bills users={users}/>} />
           {/* <Route path="*" element={<404 />} />*/}
         </Routes>
       </div>
