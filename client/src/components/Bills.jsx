@@ -24,23 +24,25 @@ export default function Bills({users}) {
 	// 	return users && users.map(user => user.id === id ? (<p key={user.id}>{user.name}</p>) : null);
 	// };
 
-	const assignUserToBill = (e, billId, id_user ) => {
-		console.log(billId, id_user, "User with id:", e, "user has been assigned");
+	const assignUserToBill = async (e, billId, id_user ) => {
+		//console.log(billId, id_user, "User with id:", e, "user has been assigned");
 		id_user = e;
-		const id = billId;
-		console.log(bills.billId);
-		console.log(billId, id_user, "User with id:", e, "user has been assigned");
-		console.log(bills.billId);
-		bills.find(bill => bill.id === billId ? bill.id_user = id_user : "");
-		fetch("/assign/:id")
-		.then(response => response.json())
-		.then(bills => {
-			setBills(bills);
-		})
-		.catch(error => {
+		console.log(billId);
+		try {
+			const result = await fetch(`/api/bills/assign/${billId}`, {
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({id_user: id_user})
+			});
+			// console.log(id_user);
+			const data = await result.json();
+			//setBills(data);
+		} catch (error) {
 			console.log(error);
-		});
-	}
+		}
+	};
 
 	const displayName = (billId, id_user) => {
 		if (users) {
