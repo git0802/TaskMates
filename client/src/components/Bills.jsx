@@ -1,14 +1,9 @@
 import { useState, useEffect } from "react";
-// import UserProfile from "./UserProfile";
 
 import "./Bills.css";
 
 export default function Bills({users}) {
 	const [bills, setBills] = useState([]);
-	const [billsInfo, setBillsInfo] = useState([]);
-	const [name, setName] = useState([]);
-	
-	console.log(bills[0].id_user); 
 
 	useEffect(() => {
 		getBills()
@@ -25,18 +20,47 @@ export default function Bills({users}) {
 			});
 	};
 
-	useEffect(() => {
-		getBillsInfo()
-	}, []);
+	// const displayName = (id) => {
+	// 	return users && users.map(user => user.id === id ? (<p key={user.id}>{user.name}</p>) : null);
+	// };
 
+	const assignUserToBill = async (e, billId, id_user ) => {
+		//console.log(billId, id_user, "User with id:", e, "user has been assigned");
+		id_user = e;
+		console.log(billId);
+		try {
+			const result = await fetch(`/api/bills/assign/${billId}`, {
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({id_user: id_user})
+			});
+			// console.log(id_user);
+			const data = await result.json();
+			//setBills(data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
-	function getBillsInfo(bills){
-		console.log(bills.id_user);
-		const userFound = users.find(user =>user.id === id_user);
-		// console.log(userFound);
-		setBillsInfo(userFound);
-		setName(userFound => ({...userFound, name: userFound.name}))
-	}
+	const displayName = (billId, id_user) => {
+		if (users) {
+		let user = users.find((user) => user.id === id_user);
+			if (user) {
+				return <p>{user.name}</p>;
+			} else {
+				return (
+					<select onChange={(e) => assignUserToBill(e.target.value, billId, id_user)}>
+						<option value="">--Select a user--</option>
+						{users.map((user) => (
+						<option key={user.id} value={user.id}>{user.name}</option>
+					))}
+					</select>
+				)
+			}
+		}
+	};
 
 	return (
 		<div className="bills-main">
@@ -50,15 +74,17 @@ export default function Bills({users}) {
 				<div><a href="#">ASSIGNED TO</a></div>
 			</div>
 			<ul className="bills-content">
-				{bills.map(bill => (
-					<li key = {bill.id}>
-						<div>{bill.due_date.split("T")[0]} </div>
-						<div>{bill.paid_date && bill.paid_date.split("T")[0]} </div>
-						<div>{bill.category} </div>
-						<div>{bill.provider} </div>
-						<div>{bill.amount} </div>
-						<div>{`${bill.status !== 0 ? "Paid" : "Unpaid"} `} </div>
-						<div>{bill.id_user} </div>
+				{bills.map(({id, due_date, paid_date, category, provider, amount, status, id_user}) => (
+					<li key = {id}>
+						<div>{due_date.split("T")[0]} </div>
+						<div>{paid_date && paid_date.split("T")[0]} </div>
+						<div>{category} </div>
+						<div>{provider} </div>
+						<div>{amount} </div>
+						<div>{`${status !== 0 ? "Paid" : "Unpaid"} `} </div>
+						<div>
+							{displayName(id, id_user)}
+						</div>
 					</li>
 				))}
 			</ul>
