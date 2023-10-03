@@ -1,5 +1,7 @@
+<a name="readme-top"></a>
+
 <!-- TABLE OF CONTENTS -->
-<a id="readme-top"></a>
+
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -48,10 +50,10 @@
 
 ## Tech Stack
 
+- [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 - [![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)]()
 - [![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)]()
 - [![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)]()
-- [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 - [![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
 - [![Express](https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white)]()
 - [![Node](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)]()
@@ -68,7 +70,7 @@
 ## Database Prep
 
 - Access the MySQL interface in your terminal by running `mysql -u root -p`
-- Create a new database called task_mates: `create database task_mates`
+- Create a new database called task_mates: `CREATE DATABASE task_mates;`
 - Add the `.env`, to containing the MySQL authentication information for MySQL user. For example:
 
 ```bash
