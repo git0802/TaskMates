@@ -34,7 +34,7 @@
 
 <strong>TaskMates App</strong> is a web-based platform designed to streamline task management and coordination among cohabitants. It simplifies the process of assigning, tracking, and completing tasks within a shared living space, promoting harmony and efficiency among users.
 
-`https://github.com/rorogab/TaskMatese`
+`https://github.com/rorogab/TaskMates`
 
 ## Features
 
