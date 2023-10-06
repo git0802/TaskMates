@@ -7,15 +7,25 @@
     "migrate": "node model/database.js"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.11.1",
+    "aws-sdk": "^2.1471.0",
+    "bcrypt": "^5.1.1",
     "bootstrap": "^5.3.1",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "jsonwebtoken": "^9.0.2",
+    "mock-aws-s3": "^4.0.2",
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
+    "nock": "^13.3.3",
     "nodemon": "^3.0.1",
+    "passport": "^0.6.0",
+    "passport-google-oauth20": "^2.0.0",
+    "react-google-login": "^5.2.2",
     "vite": "^4.4.9"
   }
 }

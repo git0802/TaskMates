@@ -11,18 +11,18 @@ const con = mysql.createConnection({
   host: DB_HOST || "127.0.0.1",
   user: DB_USER || "root",
   password: DB_PASS,
-  database: DB_NAME || "mvp",
-  multipleStatements: true
+  database: DB_NAME || "task_mates",
+  multipleStatements: true,
 });
 
-con.connect(function(err) {
+con.connect(function (err) {
   if (err) throw err;
   console.log("Connected!");
 
   let sql = fs.readFileSync(__dirname + "/init_db.sql").toString();
-  con.query(sql, function(err, result) {
+  con.query(sql, function (err, result) {
     if (err) throw err;
-    console.log("MVP database was successful!");
+    console.log("task_mates database was successful!");
 
     console.log("Closing...");
   });

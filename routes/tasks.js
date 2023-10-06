@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 const db = require("../model/helper");
 
@@ -8,7 +8,7 @@ const getAllTasks = async (req, res) => {
     const results = await db(`
       SELECT tasks.*, users.name 
       FROM tasks 
-      LEFT JOIN users ON tasks.id_user = users.id;
+      LEFT JOIN users ON tasks.user_id = users.id;
     `);
     res.send(results.data);
   } catch (err) {
@@ -17,18 +17,18 @@ const getAllTasks = async (req, res) => {
 };
 
 // Route for getting all tasks
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   getAllTasks(req, res);
 });
 
 // Route for getting tasks by user ID
-router.get('/:id_user', async (req, res) => {
-  const { id_user } = req.params;
+router.get("/:user_id", async (req, res) => {
+  const { user_id } = req.params;
   try {
     const results = await db(`
       SELECT * 
       FROM tasks 
-      WHERE id_user = ${id_user};
+      WHERE user_id = ${user_id};
     `);
     res.send(results.data);
   } catch (err) {
@@ -38,12 +38,12 @@ router.get('/:id_user', async (req, res) => {
 
 // Route for adding a new task
 router.post("/", async (req, res) => {
-  const { description, category, id_user } = req.body;
+  const { description, category, user_id } = req.body;
   console.log(req.body);
   try {
     await db(`
-      INSERT INTO tasks (description, isDone, category, id_user) 
-      VALUES ('${description}', 0, '${category}', '${id_user}');
+      INSERT INTO tasks (description, isDone, category, user_id) 
+      VALUES ('${description}', 0, '${category}', '${user_id}');
     `);
     getAllTasks(req, res);
   } catch (err) {
