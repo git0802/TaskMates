@@ -34,7 +34,7 @@
 
 <strong>TaskMates App</strong> is a web-based platform designed to streamline task management and coordination among cohabitants. It simplifies the process of assigning, tracking, and completing tasks within a shared living space, promoting harmony and efficiency among users.
 
-`https://github.com/rorogab/TaskMatese`
+`https://github.com/rorogab/TaskMates`
 
 ## Features
 
@@ -77,10 +77,14 @@
   DB_HOST=localhost
   DB_USER=root
   DB_NAME=task_mates
+
   DB_PASS=YOURPASSWORD
 ```
 
 - Run `npm run migrate` in the project folder of this repository, in a new terminal window. This will create the tables `tasks`, `users`and `bills` in your database.
+  
+
+  <img width="566" alt="Captura de pantalla DB" src="https://github.com/rorogab/TaskMates/assets/92514975/d4ea2408-3044-489e-b569-6e183cd309bb">
 
 ## Development
 
